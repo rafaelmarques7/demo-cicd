@@ -1,0 +1,60 @@
+name: CI/CD Pipeline
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Log: Setting up Node.js
+        run: echo "Setting up Node.js environment for testing..."
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Log: Installing dependencies
+        run: echo "Installing dependencies..."
+      - name: Install dependencies
+        run: npm install
+
+      - name: Log: Running tests
+        run: echo "Running tests..."
+      - name: Run tests
+        run: npm run test
+
+  build:
+    name: Build Project
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Log: Setting up Node.js
+        run: echo "Setting up Node.js environment for building..."
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Log: Installing dependencies
+        run: echo "Installing dependencies..."
+      - name: Install dependencies
+        run: npm install
+
+      - name: Log: Building project
+        run: echo "Building the project..."
+      - name: Build project
+        run: npm run build
