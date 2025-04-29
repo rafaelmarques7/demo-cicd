@@ -12,7 +12,6 @@ jobs:
   test:
     name: Run Tests
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -33,6 +32,7 @@ jobs:
         run: echo "Running tests..."
       - name: Run tests
         run: npm run test
+    if: github.event_name == 'pull_request'
 
   build:
     name: Build Project
