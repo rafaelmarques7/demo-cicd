@@ -16,19 +16,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Log: Setting up nodejs
+      - name: Log Setting up nodejs
         run: echo "Setting up nodejs environment for testing..."
       - name: Set up nodejs
         uses: actions/setup-node@v3
         with:
           node-version: '16'
 
-      - name: Log: Installing dependencies
+      - name: log Installing dependencies
         run: echo "Installing dependencies..."
       - name: Install dependencies
         run: npm install
 
-      - name: Log: Running tests
+      - name: log Running tests
         run: echo "Running tests..."
       - name: Run tests
         run: npm run test
@@ -42,19 +42,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Log: Setting up nodejs
+      - name: log Setting up nodejs
         run: echo "Setting up nodejs environment for building..."
       - name: Set up nodejs
         uses: actions/setup-node@v3
         with:
           node-version: '16'
 
-      - name: Log: Installing dependencies
+      - name: log Installing dependencies
         run: echo "Installing dependencies..."
       - name: Install dependencies
         run: npm install
 
-      - name: Log: Building project
+      - name: log Building project
         run: echo "Building the project..."
       - name: Build project
         run: npm run build
