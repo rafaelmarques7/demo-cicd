@@ -12,6 +12,7 @@ jobs:
   test:
     name: Run Tests
     runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -23,16 +24,15 @@ jobs:
         with:
           node-version: '16'
 
-      - name: log Installing dependencies
+      - name: Log Installing dependencies
         run: echo "Installing dependencies..."
       - name: Install dependencies
         run: npm install
 
-      - name: log Running tests
+      - name: Log Running tests
         run: echo "Running tests..."
       - name: Run tests
         run: npm run test
-    if: github.event_name == 'pull_request'
 
   build:
     name: Build Project
@@ -42,19 +42,25 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: log Setting up nodejs
+      - name: Log Setting up nodejs
         run: echo "Setting up nodejs environment for building..."
       - name: Set up nodejs
         uses: actions/setup-node@v3
         with:
           node-version: '16'
 
-      - name: log Installing dependencies
+      - name: Log Installing dependencies
         run: echo "Installing dependencies..."
       - name: Install dependencies
         run: npm install
 
-      - name: log Building project
+      - name: Log Building project
         run: echo "Building the project..."
       - name: Build project
         run: npm run build
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-output
+          path: build/
