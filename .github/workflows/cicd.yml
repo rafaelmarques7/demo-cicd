@@ -17,9 +17,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Log: Setting up Node.js
-        run: echo "Setting up Node.js environment for testing..."
-      - name: Set up Node.js
+      - name: Log: Setting up nodejs
+        run: echo "Setting up nodejs environment for testing..."
+      - name: Set up nodejs
         uses: actions/setup-node@v3
         with:
           node-version: '16'
@@ -42,9 +42,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Log: Setting up Node.js
-        run: echo "Setting up Node.js environment for building..."
-      - name: Set up Node.js
+      - name: Log: Setting up nodejs
+        run: echo "Setting up nodejs environment for building..."
+      - name: Set up nodejs
         uses: actions/setup-node@v3
         with:
           node-version: '16'
